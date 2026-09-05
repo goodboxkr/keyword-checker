@@ -193,9 +193,20 @@
   .relatedItem .rk { color: #444; }
   .relatedItem .rv { color: #E2662E; font-weight: bold; }
   .loadingRow { text-align: center; color: #999; padding: 20px; font-size: 0.9rem; }
+  .cp-side{position:fixed;top:50%;transform:translateY(-50%);width:160px;z-index:100;}
+  .cp-side.left{left:16px;}
+  .cp-side.right{right:16px;}
+  .cp-side iframe{display:block;}
+  .cp-side .cp-note{font-size:10px;color:#999;text-align:center;margin-top:4px;line-height:1.4;}
+  @media (max-width: 1180px){.cp-side{display:none;}}
+  .cp-bottom{max-width:728px;margin:24px auto 0;overflow:hidden;}
+  .cp-bottom-inner{transform-origin:top left;}
+  .cp-bottom .cp-note{font-size:11px;color:#999;text-align:center;margin-top:6px;}
 </style>
 </head>
 <body>
+<div class="cp-side left"><iframe src="https://ads-partners.coupang.com/widgets.html?id=1026276&template=banner&trackingCode=AF4842061&subId=&width=160&height=600" width="160" height="600" frameborder="0" scrolling="no" referrerpolicy="unsafe-url"></iframe><div class="cp-note">쿠팡 파트너스 활동으로<br>일정 수수료를 제공받습니다</div></div>
+<div class="cp-side right"><iframe src="https://ads-partners.coupang.com/widgets.html?id=1026276&template=banner&trackingCode=AF4842061&subId=&width=160&height=600" width="160" height="600" frameborder="0" scrolling="no" referrerpolicy="unsafe-url"></iframe><div class="cp-note">쿠팡 파트너스 활동으로<br>일정 수수료를 제공받습니다</div></div>
 <div class="container">
   <h1>🔍 키워드 검색량 체커</h1>
   <div class="subtitle">월간 검색량을 확인해서 글감 우선순위를 정하세요</div>
@@ -253,8 +264,27 @@
     </div>
     <div id="emptyState" class="empty">아직 확인한 키워드가 없어요.<br>위에 키워드를 입력해보세요.</div>
   </div>
+
+  <div class="cp-bottom">
+    <div class="cp-bottom-inner" style="width:728px;height:90px;"><iframe src="https://ads-partners.coupang.com/widgets.html?id=1026272&template=banner&trackingCode=AF4842061&subId=&width=728&height=90" width="728" height="90" frameborder="0" scrolling="no" referrerpolicy="unsafe-url"></iframe></div>
+    <div class="cp-note">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</div>
+  </div>
 </div>
 
+<script>
+(function(){
+  function fit(){
+    document.querySelectorAll('.cp-bottom').forEach(function(box){
+      var inner = box.querySelector('.cp-bottom-inner');
+      var ratio = Math.min(1, box.clientWidth/728);
+      inner.style.transform = 'scale('+ratio+')';
+      box.style.height = (90*ratio)+'px';
+    });
+  }
+  window.addEventListener('resize', fit);
+  fit();
+})();
+</script>
 <script>
 const API_BASE = "https://keyword-checker.rbwkdtkfkd.workers.dev";
 const STORAGE_KEY = "keywordCheckerResults";
